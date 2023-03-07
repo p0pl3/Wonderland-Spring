@@ -1,4 +1,4 @@
-package com.example.javakursach.entity;
+package com.example.toyshop.entity;
 
 
 import jakarta.persistence.Entity;
@@ -22,6 +22,7 @@ public class Product {
     private Long id;
     private String title;
     private float price;
+    private Short amount;
     private String description;
     private float rating;
 

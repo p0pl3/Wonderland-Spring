@@ -1,13 +1,13 @@
-package com.example.javakursach;
+package com.example.toyshop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class JavaKursachApplication {
+public class ToyShopApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(JavaKursachApplication.class, args);
+        SpringApplication.run(ToyShopApplication.class);
     }
 
 }
