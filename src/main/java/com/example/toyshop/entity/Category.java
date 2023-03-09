@@ -1,6 +1,5 @@
 package com.example.toyshop.entity;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,18 +11,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product {
+public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    private Float price;
-    private Short amount;
-    private String description;
-    private Float rating;
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    Category category;
-
 }

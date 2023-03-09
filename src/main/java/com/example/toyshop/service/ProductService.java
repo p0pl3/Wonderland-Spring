@@ -13,24 +13,31 @@ import java.util.List;
 public class ProductService {
 
     private final ProductRepository productRepository;
+    private final CategoryService categoryService;
+
 
     public Product create(ProductDTO dto) {
         Product product = Product.builder()
                 .title(dto.getTitle())
                 .amount(dto.getAmount())
+                .category(categoryService.getById(dto.getCategoryId()))
                 .build();
         return productRepository.save(product);
     }
 
-    public List<Product> readAll(){
+    public List<Product> getProductList() {
         return productRepository.findAll();
     }
 
-    public Product update(Product product){
+    public List<Product> getByCategoryId(Long id) {
+        return productRepository.findByCategoryId(id);
+    }
+
+    public Product update(Product product) {
         return productRepository.save(product);
     }
 
-    public void delete(Long id){
+    public void delete(Long id) {
         productRepository.deleteById(id);
     }
 }
