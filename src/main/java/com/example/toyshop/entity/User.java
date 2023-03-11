@@ -1,13 +1,12 @@
 package com.example.toyshop.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -20,4 +19,10 @@ public class User {
     private Long id;
     private String email;
     private String password;
+
+    @OneToMany(mappedBy = "buyer")
+    private List<Order> orders;
+
+    @OneToMany(mappedBy = "author")
+    private List<ProductComment> productComments;
 }

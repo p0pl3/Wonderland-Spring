@@ -1,15 +1,13 @@
 package com.example.toyshop.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -26,4 +24,10 @@ public class Feed {
     private Date date_create;
     private Date date_update;
 
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private User author;
+
+    @OneToMany(mappedBy = "feed")
+    private List<FeedComment> feedComments;
 }

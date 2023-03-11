@@ -21,8 +21,9 @@ public class ProductComment {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    Product product;
+    private Product product;
+
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    User user;
+    @JoinColumn(name = "author_id")
+    private User author;
 }

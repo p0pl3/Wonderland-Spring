@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductImage {
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
@@ -20,5 +19,5 @@ public class ProductImage {
 
     @ManyToOne
     @JoinColumn(name = "product_id")
-    Product product;
+    private Product product;
 }

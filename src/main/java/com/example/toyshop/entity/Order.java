@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -23,7 +24,10 @@ public class Order {
     private String phone;
 
     @ManyToOne
-    @JoinColumn(name = "buyer")
-    User user;
+    @JoinColumn(name = "user_id")
+    private User buyer;
+
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> orderItems;
 
 }

@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @Builder
@@ -22,8 +24,14 @@ public class Product {
     private Short amount;
     private String description;
     private Float rating;
+
     @ManyToOne
     @JoinColumn(name = "category_id")
-    Category category;
+    private Category category;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+    private List<ProductImage> productImages;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+    private List<ProductComment> productComments;
 }
