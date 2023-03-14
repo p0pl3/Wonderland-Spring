@@ -13,7 +13,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class User_shop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

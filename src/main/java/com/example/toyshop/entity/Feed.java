@@ -26,7 +26,7 @@ public class Feed {
 
     @ManyToOne
     @JoinColumn(name = "author_id")
-    private User author;
+    private User_shop author;
 
     @OneToMany(mappedBy = "feed")
     private List<FeedComment> feedComments;

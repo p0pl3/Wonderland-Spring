@@ -1,53 +1,60 @@
 package com.example.toyshop.controller;
 
-import com.example.toyshop.dto.ProductDTO;
+import com.example.toyshop.dto.CategoryDTO;
+import com.example.toyshop.dto.ProductDetailDTO;
+import com.example.toyshop.dto.ProductListDTO;
 import com.example.toyshop.entity.Product;
 import com.example.toyshop.service.ProductService;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/products")
-@AllArgsConstructor
+@RequestMapping("/product")
+@RequiredArgsConstructor
 public class ProductController {
 
-    private final ProductService productService;
+    @Autowired
+    private final ProductService service;
 
-    @PostMapping
-    public ResponseEntity<Product> create(@RequestBody ProductDTO dto) {
-        return mappingResponseProduct(productService.create(dto));
+    @PostMapping("/new")
+    public ResponseEntity<ProductDetailDTO> create(@RequestBody ProductDetailDTO productDetailDTO) {
+        return ResponseEntity.ok(service.create(productDetailDTO));
     }
 
-    @GetMapping
-    public ResponseEntity<List<Product>> getProductList() {
-        return mappingResponseListProduct(productService.getProductList());
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductDetailDTO> getProductById(@PathVariable Long id){
+        return ResponseEntity.ok(service.findById(id));
     }
 
-    @GetMapping("/category/{id}")
-    public ResponseEntity<List<Product>> getProductsById(@PathVariable Long id) {
-        return mappingResponseListProduct(productService.getByCategoryId(id));
+    @GetMapping("/")
+    public ResponseEntity<List<ProductListDTO>> getProductList() {
+        return ResponseEntity.ok(service.findAll());
     }
 
-    @PutMapping
+    @GetMapping("/filter/category")
+    public ResponseEntity<List<ProductListDTO>> categoryFilter(@RequestBody CategoryDTO category){
+        return ResponseEntity.ok(service.findByCategory(category));
+    }
+
+    @GetMapping("/filter/title")
+    public ResponseEntity<List<ProductListDTO>> titleFilter(@RequestParam String title){
+        return ResponseEntity.ok(service.findByTitle(title));
+    }
+
+    @PutMapping("/{id}")
     public ResponseEntity<Product> update(@RequestBody Product product) {
-        return mappingResponseProduct(productService.update(product));
+        return mappingResponseProduct(service.update(product));
     }
 
     @DeleteMapping("/{id}")
-    public HttpStatus delete(@PathVariable Long id) {
-        productService.delete(id);
-        return HttpStatus.OK;
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
     private ResponseEntity<Product> mappingResponseProduct(Product product) {

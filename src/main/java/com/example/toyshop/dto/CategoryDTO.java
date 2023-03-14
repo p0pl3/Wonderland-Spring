@@ -3,8 +3,8 @@ package com.example.toyshop.dto;
 import lombok.Data;
 
 @Data
-public class ProductDTO {
+public class CategoryDTO {
+    private Long id;
     private String title;
-    private Short amount;
-    private Long categoryId;
+    private String slug;
 }

@@ -17,6 +17,8 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
+    private Short quantity;
+
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;

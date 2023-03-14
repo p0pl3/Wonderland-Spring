@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -29,9 +30,9 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    private List<ProductImage> productImages;
+    @OneToMany(mappedBy = "product")
+    private List<ProductImage> images;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    private List<ProductComment> productComments;
+    @OneToMany(mappedBy = "product")
+    private List<ProductComment> comments;
 }

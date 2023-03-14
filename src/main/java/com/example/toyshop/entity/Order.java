@@ -20,12 +20,12 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String address;
-    private Date date_create;
+    private Date creationDate;
     private String phone;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User buyer;
+    @JoinColumn(name = "buyer_id")
+    private User_shop buyer;
 
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems;

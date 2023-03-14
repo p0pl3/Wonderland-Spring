@@ -1,12 +1,17 @@
 package com.example.toyshop.service;
 
-import com.example.toyshop.dto.ProductDTO;
+import com.example.toyshop.dto.CategoryDTO;
+import com.example.toyshop.dto.ProductDetailDTO;
+import com.example.toyshop.dto.ProductListDTO;
 import com.example.toyshop.entity.Product;
 import com.example.toyshop.repository.ProductRepository;
+import com.example.toyshop.service.mapper.CategoryMapper;
+import com.example.toyshop.service.mapper.ProductMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -14,23 +19,28 @@ public class ProductService {
 
     private final ProductRepository productRepository;
     private final CategoryService categoryService;
+    private ProductMapper productMapper;
+    private CategoryMapper categoryMapper;
 
 
-    public Product create(ProductDTO dto) {
-        Product product = Product.builder()
-                .title(dto.getTitle())
-                .amount(dto.getAmount())
-                .category(categoryService.getById(dto.getCategoryId()))
-                .build();
-        return productRepository.save(product);
+    public ProductDetailDTO create(ProductDetailDTO dto) {
+        return productMapper.toDetailDto(productRepository.save(productMapper.toEntityFromDetailDto(dto)));
     }
 
-    public List<Product> getProductList() {
-        return productRepository.findAll();
+    public List<ProductListDTO> findAll() {
+        return productRepository.findAll().stream().map(productMapper::toListDto).collect(Collectors.toList());
     }
 
-    public List<Product> getByCategoryId(Long id) {
-        return productRepository.findByCategoryId(id);
+    public List<ProductListDTO> findByCategory(CategoryDTO dto) {
+        return productRepository.findProductByCategory(categoryMapper.toEntity(dto)).stream().map(productMapper::toListDto).collect(Collectors.toList());
+    }
+
+    public List<ProductListDTO> findByTitle(String title) {
+        return productRepository.findProductByTitle(title).stream().map(productMapper::toListDto).collect(Collectors.toList());
+    }
+
+    public ProductDetailDTO findById(Long id) {
+        return productMapper.toDetailDto(productRepository.findById(id).orElse(null));
     }
 
     public Product update(Product product) {
