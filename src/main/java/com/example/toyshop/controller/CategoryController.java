@@ -1,13 +1,10 @@
 package com.example.toyshop.controller;
 
-import com.example.toyshop.dto.CategoryDTO;
-import com.example.toyshop.dto.CategoryDetailDTO;
-import com.example.toyshop.entity.Category;
+import com.example.toyshop.dto.CategoryCreateDTO;
+import com.example.toyshop.dto.CategoryListDTO;
 import com.example.toyshop.service.CategoryService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,12 +17,12 @@ public class CategoryController {
     private final CategoryService service;
 
     @PostMapping("/new")
-    public ResponseEntity<CategoryDTO> create(@RequestBody CategoryDTO category){
+    public ResponseEntity<CategoryListDTO> create(@RequestBody CategoryCreateDTO category){
         return ResponseEntity.ok(service.create(category));
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<CategoryDetailDTO>> getCategoryList() {
+    public ResponseEntity<List<CategoryListDTO>> getCategoryList() {
         return ResponseEntity.ok(service.findAll());
     }
 

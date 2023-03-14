@@ -10,6 +10,6 @@ public class ProductListDTO {
     private String title;
     private Float price;
     private Float rating;
-    private CategoryDTO category;
+    private CategoryProductDTO category;
     private List<ProductImageDTO> images;
 }

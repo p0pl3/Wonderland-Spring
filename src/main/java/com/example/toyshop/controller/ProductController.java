@@ -1,6 +1,6 @@
 package com.example.toyshop.controller;
 
-import com.example.toyshop.dto.CategoryDTO;
+import com.example.toyshop.dto.ProductCreateDTO;
 import com.example.toyshop.dto.ProductDetailDTO;
 import com.example.toyshop.dto.ProductListDTO;
 import com.example.toyshop.entity.Product;
@@ -22,8 +22,8 @@ public class ProductController {
     private final ProductService service;
 
     @PostMapping("/new")
-    public ResponseEntity<ProductDetailDTO> create(@RequestBody ProductDetailDTO productDetailDTO) {
-        return ResponseEntity.ok(service.create(productDetailDTO));
+    public ResponseEntity<ProductDetailDTO> create(@RequestBody ProductCreateDTO dto) {
+        return ResponseEntity.ok(service.create(dto));
     }
 
     @GetMapping("/{id}")
@@ -32,18 +32,9 @@ public class ProductController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<List<ProductListDTO>> getProductList() {
-        return ResponseEntity.ok(service.findAll());
-    }
-
-    @GetMapping("/filter/category")
-    public ResponseEntity<List<ProductListDTO>> categoryFilter(@RequestBody CategoryDTO category) {
-        return ResponseEntity.ok(service.findByCategory(category));
-    }
-
-    @GetMapping("/filter/title")
-    public ResponseEntity<List<ProductListDTO>> titleFilter(@RequestParam String title) {
-        return ResponseEntity.ok(service.findByTitle(title));
+    public ResponseEntity<List<ProductListDTO>> getProductList(@RequestParam(name = "title", required = false) String title,
+                                                               @RequestParam(name = "category", required = false) String category) {
+        return ResponseEntity.ok(service.findAll(title, category));
     }
 
     @PutMapping("/{id}")

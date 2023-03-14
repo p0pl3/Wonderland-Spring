@@ -1,6 +1,7 @@
 package com.example.toyshop.service.mapper;
 
 import com.example.toyshop.dto.ProductCategoryDTO;
+import com.example.toyshop.dto.ProductCreateDTO;
 import com.example.toyshop.dto.ProductDetailDTO;
 import com.example.toyshop.dto.ProductListDTO;
 import com.example.toyshop.entity.Product;
@@ -15,5 +16,7 @@ public interface ProductMapper {
     ProductCategoryDTO toCategoryDto(Product product);
 
     ProductListDTO toListDto(Product product);
+
+    Product fromCreateDto(ProductCreateDTO dto);
 
 }

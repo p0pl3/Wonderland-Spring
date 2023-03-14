@@ -1,7 +1,7 @@
 package com.example.toyshop.service;
 
-import com.example.toyshop.dto.CategoryDTO;
-import com.example.toyshop.dto.CategoryDetailDTO;
+import com.example.toyshop.dto.CategoryCreateDTO;
+import com.example.toyshop.dto.CategoryListDTO;
 import com.example.toyshop.entity.Category;
 import com.example.toyshop.repository.CategoryRepository;
 import com.example.toyshop.service.mapper.CategoryMapper;
@@ -19,20 +19,20 @@ public class CategoryService {
     private CategoryMapper mapper;
 
 
-    public CategoryDTO create(CategoryDTO CategoryDTO) {
-        return mapper.toDto(categoryRepository.save(mapper.toEntity(CategoryDTO)));
+    public CategoryListDTO create(CategoryCreateDTO CategoryCreateDTO) {
+        return mapper.toListDto(categoryRepository.save(mapper.toEntity(CategoryCreateDTO)));
     }
 
-    public List<CategoryDetailDTO> findAll() {
-        return categoryRepository.findAll().stream().map(mapper::toDetailDTO).collect(Collectors.toList());
+    public List<CategoryListDTO> findAll() {
+        return categoryRepository.findAll().stream().map(mapper::toListDto).collect(Collectors.toList());
     }
 
-    public List<CategoryDTO> findByTitle(String title) {
+    public List<CategoryCreateDTO> findByTitle(String title) {
         return categoryRepository.findByTitle(title).stream().map(mapper::toDto).collect(Collectors.toList());
     }
 
-    public CategoryDTO findById(Long id){
-        return mapper.toDto(categoryRepository.findById(id).orElse(null));
+    public Category findById(Long id) {
+        return categoryRepository.findById(id).orElse(null);
     }
 
     public Category update(Category Category) {

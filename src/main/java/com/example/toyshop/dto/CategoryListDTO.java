@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class CategoryDetailDTO {
+public class CategoryListDTO {
     private Long id;
     private String title;
     private String slug;

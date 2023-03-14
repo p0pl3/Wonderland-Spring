@@ -1,8 +1,10 @@
 package com.example.toyshop.service;
 
-import com.example.toyshop.dto.CategoryDTO;
+import com.example.toyshop.dto.CategoryCreateDTO;
+import com.example.toyshop.dto.ProductCreateDTO;
 import com.example.toyshop.dto.ProductDetailDTO;
 import com.example.toyshop.dto.ProductListDTO;
+import com.example.toyshop.entity.Category;
 import com.example.toyshop.entity.Product;
 import com.example.toyshop.repository.ProductRepository;
 import com.example.toyshop.service.mapper.CategoryMapper;
@@ -23,20 +25,19 @@ public class ProductService {
     private CategoryMapper categoryMapper;
 
 
-    public ProductDetailDTO create(ProductDetailDTO dto) {
-        return productMapper.toDetailDto(productRepository.save(productMapper.toEntityFromDetailDto(dto)));
+    public ProductDetailDTO create(ProductCreateDTO dto) {
+        if (dto.getCategoryId() == null)
+            return productMapper.toDetailDto(productRepository.save(productMapper.fromCreateDto(dto)));
+        Category category = categoryService.findById(dto.getCategoryId());
+        if (category == null)
+            return productMapper.toDetailDto(productRepository.save(productMapper.fromCreateDto(dto)));
+        Product product = productMapper.fromCreateDto(dto);
+        product.setCategory(category);
+        return productMapper.toDetailDto(productRepository.save(product));
     }
 
-    public List<ProductListDTO> findAll() {
+    public List<ProductListDTO> findAll(String title, String category) {
         return productRepository.findAll().stream().map(productMapper::toListDto).collect(Collectors.toList());
-    }
-
-    public List<ProductListDTO> findByCategory(CategoryDTO dto) {
-        return productRepository.findProductByCategory(categoryMapper.toEntity(dto)).stream().map(productMapper::toListDto).collect(Collectors.toList());
-    }
-
-    public List<ProductListDTO> findByTitle(String title) {
-        return productRepository.findProductByTitle(title).stream().map(productMapper::toListDto).collect(Collectors.toList());
     }
 
     public ProductDetailDTO findById(Long id) {
