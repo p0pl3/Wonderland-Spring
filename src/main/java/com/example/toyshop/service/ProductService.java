@@ -43,8 +43,8 @@ public class ProductService {
         return productMapper.toDetailDto(productRepository.findById(id).orElse(null));
     }
 
-    public Product update(Product product) {
-        return productRepository.save(product);
+    public ProductDetailDTO update(Product product) {
+        return productMapper.toDetailDto(productRepository.save(product));
     }
 
     public void delete(Long id) {

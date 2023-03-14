@@ -27,7 +27,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductDetailDTO> getProductById(@PathVariable Long id){
+    public ResponseEntity<ProductDetailDTO> getProductById(@PathVariable Long id) {
         return ResponseEntity.ok(service.findById(id));
     }
 
@@ -37,18 +37,18 @@ public class ProductController {
     }
 
     @GetMapping("/filter/category")
-    public ResponseEntity<List<ProductListDTO>> categoryFilter(@RequestBody CategoryDTO category){
+    public ResponseEntity<List<ProductListDTO>> categoryFilter(@RequestBody CategoryDTO category) {
         return ResponseEntity.ok(service.findByCategory(category));
     }
 
     @GetMapping("/filter/title")
-    public ResponseEntity<List<ProductListDTO>> titleFilter(@RequestParam String title){
+    public ResponseEntity<List<ProductListDTO>> titleFilter(@RequestParam String title) {
         return ResponseEntity.ok(service.findByTitle(title));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> update(@RequestBody Product product) {
-        return mappingResponseProduct(service.update(product));
+    public ResponseEntity<ProductDetailDTO> update(@RequestBody Product product) {
+        return ResponseEntity.ok(service.update(product));
     }
 
     @DeleteMapping("/{id}")

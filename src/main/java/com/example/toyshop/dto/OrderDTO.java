@@ -1,6 +1,6 @@
 package com.example.toyshop.dto;
 
-import com.example.toyshop.entity.User_shop;
+import com.example.toyshop.entity.OrderStatus;
 import lombok.Data;
 
 import java.util.Date;
@@ -12,6 +12,7 @@ public class OrderDTO {
     private String address;
     private Date creationDate;
     private String phone;
-    private User_shop buyer;
+    private UserInOrderDTO buyer;
     private List<OrderItemDTO> orderItems;
+    private OrderStatus status;
 }

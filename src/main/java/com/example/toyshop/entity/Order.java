@@ -22,6 +22,7 @@ public class Order {
     private String address;
     private Date creationDate;
     private String phone;
+    private OrderStatus status;
 
     @ManyToOne
     @JoinColumn(name = "buyer_id")

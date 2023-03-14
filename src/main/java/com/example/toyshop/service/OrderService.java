@@ -28,7 +28,6 @@ public class OrderService {
 
     public List<OrderDTO> findAllByUserId(Long id) {
         return repository.findAllByBuyerId(id).stream().map(mapper::toDto).collect(Collectors.toList());
-
     }
 
     public OrderDTO findById(Long id){
