@@ -15,4 +15,5 @@ public class OrderDTO {
     private UserInOrderDTO buyer;
     private List<OrderItemDTO> orderItems;
     private OrderStatus status;
+    private Float total;
 }

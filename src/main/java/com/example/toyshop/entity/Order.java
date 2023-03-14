@@ -23,6 +23,7 @@ public class Order {
     private Date creationDate;
     private String phone;
     private OrderStatus status;
+    private Float total;
 
     @ManyToOne
     @JoinColumn(name = "buyer_id")
