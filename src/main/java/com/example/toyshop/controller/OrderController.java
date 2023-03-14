@@ -24,7 +24,7 @@ public class OrderController {
         return ResponseEntity.ok(service.findById(id));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/")
     public ResponseEntity<List<OrderDTO>> getAllUserOrders(@RequestParam Long id) {
         return ResponseEntity.ok(service.findAllByUserId(id));
     }
