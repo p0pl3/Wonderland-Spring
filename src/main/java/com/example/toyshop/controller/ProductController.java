@@ -33,7 +33,7 @@ public class ProductController {
 
     @GetMapping("/")
     public ResponseEntity<List<ProductListDTO>> getProductList(@RequestParam(name = "title", required = false) String title,
-                                                               @RequestParam(name = "category", required = false) String category) {
+                                                               @RequestParam(name = "category", required = false) Long category) {
         return ResponseEntity.ok(service.findAll(title, category));
     }
 

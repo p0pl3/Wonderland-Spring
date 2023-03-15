@@ -36,8 +36,8 @@ public class ProductService {
         return productMapper.toDetailDto(productRepository.save(product));
     }
 
-    public List<ProductListDTO> findAll(String title, String category) {
-        return productRepository.findAll().stream().map(productMapper::toListDto).collect(Collectors.toList());
+    public List<ProductListDTO> findAll(String title, Long category) {
+        return productRepository.findByFilters(title, category).stream().map(productMapper::toListDto).collect(Collectors.toList());
     }
 
     public ProductDetailDTO findById(Long id) {
