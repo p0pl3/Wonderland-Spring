@@ -15,4 +15,7 @@ public class ProductCreateDTO {
     private Long categoryId;
     private List<ProductImageDTO> images;
     private List<ProductCommentDTO> comments;
+    private Float new_price;
+    private Float discount;
+    private Float delivery_period;
 }

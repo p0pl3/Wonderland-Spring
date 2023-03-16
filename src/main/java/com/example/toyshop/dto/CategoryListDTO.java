@@ -1,6 +1,5 @@
 package com.example.toyshop.dto;
 
-import com.example.toyshop.entity.Product;
 import lombok.Data;
 
 import java.util.List;

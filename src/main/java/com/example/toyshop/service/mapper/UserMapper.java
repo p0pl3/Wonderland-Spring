@@ -1,17 +1,20 @@
 package com.example.toyshop.service.mapper;
 
+import com.example.toyshop.dto.UserCreateDTO;
 import com.example.toyshop.dto.UserDTO;
-import com.example.toyshop.dto.UserInOrderDTO;
-import com.example.toyshop.entity.User_shop;
+import com.example.toyshop.dto.UserDetailDTO;
+import com.example.toyshop.entity.User;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
-    User_shop toDto(UserDTO userDTO);
+    User fromDetailDto(UserDetailDTO userDetailDTO);
 
-    UserDTO toEntity(User_shop user);
+    UserDetailDTO toDetailDto(User user);
 
-    UserInOrderDTO toUserInOrderDto(User_shop user);
+    UserDTO toDto(User user);
 
-    User_shop fromUserInOrderDto(UserInOrderDTO user);
+    User fromDto(UserDTO dto);
+
+    User fromCreateDto(UserCreateDTO dto);
 }

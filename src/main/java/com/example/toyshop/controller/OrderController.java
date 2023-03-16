@@ -1,6 +1,7 @@
 package com.example.toyshop.controller;
 
-import com.example.toyshop.dto.OrderDTO;
+import com.example.toyshop.dto.OrderCreateDTO;
+import com.example.toyshop.dto.OrderListDTO;
 import com.example.toyshop.service.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,27 +15,29 @@ import java.util.List;
 public class OrderController {
     private final OrderService service;
 
-    @PostMapping("/new")
-    public ResponseEntity<OrderDTO> create(@RequestBody OrderDTO order) {
+    @PostMapping("/")
+    public ResponseEntity<OrderCreateDTO> create(@RequestBody OrderCreateDTO order) {
         return ResponseEntity.ok(service.create(order));
     }
 
+    @GetMapping("/list")
+    public ResponseEntity<List<OrderListDTO>> getAllOrders() {
+        return ResponseEntity.ok(service.findAll());
+    }
+
     @GetMapping("/{id}")
-    public ResponseEntity<OrderDTO> getOrder(@PathVariable Long id) {
+    public ResponseEntity<OrderCreateDTO> getOrder(@PathVariable Long id) {
         return ResponseEntity.ok(service.findById(id));
     }
 
-    @GetMapping("/")
-    public ResponseEntity<List<OrderDTO>> getAllUserOrders(@RequestParam Long id) {
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<OrderListDTO>> getAllUserOrders(@PathVariable Long id) {
         return ResponseEntity.ok(service.findAllByUserId(id));
     }
 
-    @PostMapping("/{id}/delete")
+    @PostMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
-
-
-
 }

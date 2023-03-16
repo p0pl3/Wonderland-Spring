@@ -1,12 +1,12 @@
 package com.example.toyshop.service.mapper;
 
-import com.example.toyshop.dto.OrderItemDTO;
+import com.example.toyshop.dto.OrderItemCreateDTO;
 import com.example.toyshop.entity.OrderItem;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface OrderItemMapper {
-    OrderItem toEntity(OrderItemDTO orderItemDTO);
+    OrderItem toEntity(OrderItemCreateDTO orderItemCreateDTO);
 
-    OrderItemDTO toDto(OrderItem orderItem);
+    OrderItemCreateDTO toDto(OrderItem orderItem);
 }

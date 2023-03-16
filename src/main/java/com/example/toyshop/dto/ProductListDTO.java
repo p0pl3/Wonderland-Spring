@@ -12,4 +12,7 @@ public class ProductListDTO {
     private Float rating;
     private CategoryProductDTO category;
     private List<ProductImageDTO> images;
+    private Float new_price;
+    private Float discount;
+    private Float delivery_period;
 }

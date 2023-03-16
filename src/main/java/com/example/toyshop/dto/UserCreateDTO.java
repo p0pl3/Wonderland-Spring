@@ -3,7 +3,7 @@ package com.example.toyshop.dto;
 import lombok.Data;
 
 @Data
-public class UserInOrderDTO {
-    private Long id;
+public class UserCreateDTO {
     private String email;
+    private String password;
 }

@@ -21,12 +21,12 @@ public class Feed {
     private Long id;
     private String title;
     private String description;
-    private Date date_create;
-    private Date date_update;
+    private Date dateCreate;
+    private Date dateUpdate;
 
     @ManyToOne
     @JoinColumn(name = "author_id")
-    private User_shop author;
+    private User author;
 
     @OneToMany(mappedBy = "feed")
     private List<FeedComment> feedComments;

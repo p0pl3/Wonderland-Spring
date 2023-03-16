@@ -19,7 +19,7 @@ public class FeedComment {
 
     @ManyToOne
     @JoinColumn(name = "author_id")
-    private User_shop author;
+    private User author;
 
     @ManyToOne
     @JoinColumn(name = "feed_id")

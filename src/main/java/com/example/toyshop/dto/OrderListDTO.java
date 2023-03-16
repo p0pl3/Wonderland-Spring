@@ -7,12 +7,13 @@ import java.util.Date;
 import java.util.List;
 
 @Data
-public class OrderDTO {
+public class OrderListDTO {
+    private Long id;
     private String address;
     private Date creationDate;
     private String phone;
-    private UserInOrderDTO buyer;
-    private List<OrderItemDTO> orderItems;
+    private UserDTO buyer;
+    private List<OrderItemCreateDTO> orderItems;
     private OrderStatus status;
     private Float total;
 }

@@ -14,6 +14,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "order_shop")
 public class Order {
 
     @Id
@@ -27,7 +28,7 @@ public class Order {
 
     @ManyToOne
     @JoinColumn(name = "buyer_id")
-    private User_shop buyer;
+    private User buyer;
 
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems;

@@ -16,12 +16,12 @@ public class CategoryController {
 
     private final CategoryService service;
 
-    @PostMapping("/new")
+    @PostMapping("/")
     public ResponseEntity<CategoryListDTO> create(@RequestBody CategoryCreateDTO category){
         return ResponseEntity.ok(service.create(category));
     }
 
-    @GetMapping("/")
+    @GetMapping("/list")
     public ResponseEntity<List<CategoryListDTO>> getCategoryList() {
         return ResponseEntity.ok(service.findAll());
     }

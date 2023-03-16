@@ -8,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
@@ -25,6 +24,9 @@ public class Product {
     private Short amount;
     private String description;
     private Float rating;
+    private Float new_price;
+    private Float discount;
+    private Float delivery_period;
 
     @ManyToOne
     @JoinColumn(name = "category_id")
