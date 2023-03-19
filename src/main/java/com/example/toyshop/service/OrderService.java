@@ -1,15 +1,19 @@
 package com.example.toyshop.service;
 
 import com.example.toyshop.dto.OrderCreateDTO;
+import com.example.toyshop.dto.OrderItemListDTO;
 import com.example.toyshop.dto.OrderListDTO;
 import com.example.toyshop.entity.Order;
+import com.example.toyshop.entity.OrderItem;
 import com.example.toyshop.entity.User;
 import com.example.toyshop.repository.OrderRepository;
+import com.example.toyshop.service.mapper.OrderItemMapper;
 import com.example.toyshop.service.mapper.OrderMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,14 +22,17 @@ public class OrderService {
 
     private final OrderRepository repository;
     private OrderMapper mapper;
+    private OrderItemMapper mapperItem;
     private UserService userService;
     private OrderItemService orderItemService;
 
     public OrderCreateDTO create(OrderCreateDTO dto) {
-        User buyer = userService.findById(dto.getBuyerId());
         Order order = mapper.fromCreateDto(dto);
+        repository.save(order);
+        User buyer = userService.findById(dto.getBuyerId());
         order.setBuyer(buyer);
-        order.setOrderItems(dto.getOrderItems().stream().map(orderItemService::create).collect(Collectors.toList()));
+        List<OrderItem> orderItems = dto.getOrderItems().stream().map(orderItem-> orderItemService.create(orderItem, order)).collect(Collectors.toList());
+        order.setOrderItems(orderItems);
         return mapper.toCreateDto(repository.save(order));
     }
 
@@ -39,6 +46,10 @@ public class OrderService {
 
     public OrderCreateDTO findById(Long id){
         return mapper.toCreateDto(repository.findById(id).orElse(null));
+    }
+
+    public List<OrderItemListDTO> findAllByOrderId(Long id){
+        return Objects.requireNonNull(repository.findById(id).orElse(null)).getOrderItems().stream().map(mapperItem::toListDto).collect(Collectors.toList());
     }
 
     public Order update(Order order) {

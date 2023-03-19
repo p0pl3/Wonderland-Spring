@@ -13,7 +13,7 @@ public class OrderListDTO {
     private Date creationDate;
     private String phone;
     private UserDTO buyer;
-    private List<OrderItemCreateDTO> orderItems;
+    private List<OrderItemListDTO> orderItems;
     private OrderStatus status;
     private Float total;
 }
