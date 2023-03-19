@@ -3,9 +3,8 @@ package com.example.toyshop.dto;
 import lombok.Data;
 
 @Data
-public class ProductCommentDTO {
-    private Long id;
+public class ProductCommentCreateDTO {
     private String comment;
     private Float rating;
-    private UserDTO author;
+    private Long authorId;
 }
