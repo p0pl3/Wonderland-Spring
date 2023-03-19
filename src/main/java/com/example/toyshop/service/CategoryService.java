@@ -15,36 +15,36 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class CategoryService {
 
-    private final CategoryRepository categoryRepository;
+    private final CategoryRepository repository;
     private CategoryMapper mapper;
 
 
     public CategoryListDTO create(CategoryCreateDTO CategoryCreateDTO) {
-        return mapper.toListDto(categoryRepository.save(mapper.toEntity(CategoryCreateDTO)));
+        return mapper.toListDto(repository.save(mapper.toEntity(CategoryCreateDTO)));
     }
 
     public List<CategoryListDTO> findAll() {
-        return categoryRepository.findAll().stream().map(mapper::toListDto).collect(Collectors.toList());
+        return repository.findAll().stream().map(mapper::toListDto).collect(Collectors.toList());
     }
 
     public List<CategoryCreateDTO> findByTitle(String title) {
-        return categoryRepository.findByTitle(title).stream().map(mapper::toDto).collect(Collectors.toList());
+        return repository.findByTitle(title).stream().map(mapper::toDto).collect(Collectors.toList());
     }
 
     public Category findById(Long id) {
-        return categoryRepository.findById(id).orElse(null);
+        return repository.findById(id).orElse(null);
     }
 
     public Category update(Category Category) {
-        return categoryRepository.save(Category);
+        return repository.save(Category);
     }
 
     public void delete(Long id) {
-        categoryRepository.deleteById(id);
+        repository.deleteById(id);
     }
 
     public Category readById(Long id) {
-        return categoryRepository.findById(id).orElseThrow(() ->
+        return repository.findById(id).orElseThrow(() ->
                 new RuntimeException("Category not found - " + id));
     }
 }

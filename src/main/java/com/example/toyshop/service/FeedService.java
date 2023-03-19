@@ -2,7 +2,9 @@ package com.example.toyshop.service;
 
 import com.example.toyshop.dto.FeedCreateDTO;
 import com.example.toyshop.dto.FeedListDTO;
+import com.example.toyshop.dto.ProductListDTO;
 import com.example.toyshop.entity.Feed;
+import com.example.toyshop.entity.FeedCategory;
 import com.example.toyshop.entity.User;
 import com.example.toyshop.repository.FeedRepository;
 import com.example.toyshop.service.mapper.FeedMapper;
@@ -17,18 +19,21 @@ import java.util.stream.Collectors;
 public class FeedService {
     private final FeedRepository repository;
     private final UserService userService;
+    private final FeedCategoryService feedCategoryService;
     private FeedMapper mapper;
 
 
     public FeedListDTO create(FeedCreateDTO dto) {
         User author = userService.findById(dto.getAuthorId());
+        FeedCategory category = feedCategoryService.findById(dto.getCategoryId());
         Feed feed = mapper.fromCreateDto(dto);
         feed.setAuthor(author);
+        feed.setCategory(category);
         return mapper.toListDto(repository.save(feed));
     }
 
-    public List<FeedListDTO> findAll() {
-        return repository.findAll().stream().map(mapper::toListDto).collect(Collectors.toList());
+    public List<FeedListDTO> findAll(String title, Long category) {
+        return repository.findByFilters(title, category).stream().map(mapper::toListDto).collect(Collectors.toList());
     }
 
     public List<FeedListDTO> findAllByUserId(Long id) {

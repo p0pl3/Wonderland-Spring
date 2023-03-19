@@ -20,8 +20,9 @@ public class FeedController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<FeedListDTO>> getAllFeeds() {
-        return ResponseEntity.ok(service.findAll());
+    public ResponseEntity<List<FeedListDTO>> getAllFeeds(@RequestParam(name = "title", required = false) String title,
+                                                         @RequestParam(name = "category", required = false) Long category) {
+        return ResponseEntity.ok(service.findAll(title, category));
     }
 
     @GetMapping("/{id}")

@@ -25,6 +25,10 @@ public class Feed {
     private Date dateUpdate;
 
     @ManyToOne
+    @JoinColumn(name = "category_id")
+    private FeedCategory category;
+
+    @ManyToOne
     @JoinColumn(name = "author_id")
     private User author;
 

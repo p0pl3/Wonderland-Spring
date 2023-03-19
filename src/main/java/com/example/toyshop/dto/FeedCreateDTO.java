@@ -10,4 +10,5 @@ public class FeedCreateDTO {
     private String description;
     private Date dateCreate;
     private Long authorId;
+    private Long categoryId;
 }
