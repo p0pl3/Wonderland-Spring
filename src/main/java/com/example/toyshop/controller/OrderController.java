@@ -1,7 +1,9 @@
 package com.example.toyshop.controller;
 
 import com.example.toyshop.dto.OrderCreateDTO;
+import com.example.toyshop.dto.OrderItemListDTO;
 import com.example.toyshop.dto.OrderListDTO;
+import com.example.toyshop.service.OrderItemService;
 import com.example.toyshop.service.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class OrderController {
     private final OrderService service;
+    private final OrderItemService orderItemService;
 
     @PostMapping("/")
     public ResponseEntity<OrderCreateDTO> create(@RequestBody OrderCreateDTO order) {
@@ -33,6 +36,11 @@ public class OrderController {
     @GetMapping("/user/{id}")
     public ResponseEntity<List<OrderListDTO>> getAllUserOrders(@PathVariable Long id) {
         return ResponseEntity.ok(service.findAllByUserId(id));
+    }
+
+    @GetMapping("/{oid}/items/list")
+    public ResponseEntity<List<OrderItemListDTO>> getAllOrderItems(@PathVariable Long oid) {
+        return ResponseEntity.ok(orderItemService.findAllByOrderId(oid));
     }
 
     @DeleteMapping("/{id}")

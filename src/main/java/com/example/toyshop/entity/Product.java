@@ -37,4 +37,8 @@ public class Product {
 
     @OneToMany(mappedBy = "product")
     private List<ProductComment> comments;
+
+    public void addImage(ProductImage image){
+        images.add(image);
+    }
 }

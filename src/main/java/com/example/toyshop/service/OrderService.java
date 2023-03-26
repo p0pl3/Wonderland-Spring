@@ -31,7 +31,7 @@ public class OrderService {
         repository.save(order);
         User buyer = userService.findById(dto.getBuyerId());
         order.setBuyer(buyer);
-        List<OrderItem> orderItems = dto.getOrderItems().stream().map(orderItem-> orderItemService.create(orderItem, order)).collect(Collectors.toList());
+        List<OrderItem> orderItems = dto.getOrderItems().stream().map(orderItem -> orderItemService.create(orderItem, order)).collect(Collectors.toList());
         order.setOrderItems(orderItems);
         return mapper.toCreateDto(repository.save(order));
     }
@@ -44,11 +44,11 @@ public class OrderService {
         return repository.findAllByBuyerId(id).stream().map(mapper::toListDto).collect(Collectors.toList());
     }
 
-    public OrderCreateDTO findById(Long id){
+    public OrderCreateDTO findById(Long id) {
         return mapper.toCreateDto(repository.findById(id).orElse(null));
     }
 
-    public List<OrderItemListDTO> findAllByOrderId(Long id){
+    public List<OrderItemListDTO> findAllByOrderId(Long id) {
         return Objects.requireNonNull(repository.findById(id).orElse(null)).getOrderItems().stream().map(mapperItem::toListDto).collect(Collectors.toList());
     }
 
