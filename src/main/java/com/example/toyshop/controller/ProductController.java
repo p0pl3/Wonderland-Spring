@@ -2,14 +2,10 @@ package com.example.toyshop.controller;
 
 import com.example.toyshop.dto.ProductCreateDTO;
 import com.example.toyshop.dto.ProductDetailDTO;
-import com.example.toyshop.dto.ProductImageDTO;
 import com.example.toyshop.dto.ProductListDTO;
-import com.example.toyshop.entity.ProductImage;
-import com.example.toyshop.repository.ProductImageRepository;
 import com.example.toyshop.service.ProductImageService;
 import com.example.toyshop.service.ProductService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;

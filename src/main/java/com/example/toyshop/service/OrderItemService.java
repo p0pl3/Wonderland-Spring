@@ -2,7 +2,6 @@ package com.example.toyshop.service;
 
 import com.example.toyshop.dto.OrderItemCreateDTO;
 import com.example.toyshop.dto.OrderItemListDTO;
-import com.example.toyshop.dto.ProductCommentDTO;
 import com.example.toyshop.entity.Order;
 import com.example.toyshop.entity.OrderItem;
 import com.example.toyshop.repository.OrderItemRepository;

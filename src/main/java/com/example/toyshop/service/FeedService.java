@@ -44,6 +44,10 @@ public class FeedService {
         return mapper.toListDto(repository.findById(id).orElse(null));
     }
 
+    public Feed findByIdEntity(Long id){
+        return repository.findById(id).orElse(null);
+    }
+
     public Feed update(Feed feed) {
         return repository.save(feed);
     }
