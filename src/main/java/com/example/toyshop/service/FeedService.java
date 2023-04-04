@@ -1,13 +1,12 @@
 package com.example.toyshop.service;
 
-import com.example.toyshop.dto.FeedCreateDTO;
-import com.example.toyshop.dto.FeedListDTO;
-import com.example.toyshop.dto.ProductListDTO;
+import com.example.toyshop.dto.feed.FeedCreateDTO;
+import com.example.toyshop.dto.feed.FeedListDTO;
 import com.example.toyshop.entity.Feed;
 import com.example.toyshop.entity.FeedCategory;
 import com.example.toyshop.entity.User;
-import com.example.toyshop.repository.FeedRepository;
-import com.example.toyshop.service.mapper.FeedMapper;
+import com.example.toyshop.repository.feed.FeedRepository;
+import com.example.toyshop.mapper.FeedMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

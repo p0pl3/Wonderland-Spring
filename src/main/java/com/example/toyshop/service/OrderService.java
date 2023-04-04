@@ -1,14 +1,14 @@
 package com.example.toyshop.service;
 
-import com.example.toyshop.dto.OrderCreateDTO;
-import com.example.toyshop.dto.OrderItemListDTO;
-import com.example.toyshop.dto.OrderListDTO;
+import com.example.toyshop.dto.order.OrderCreateDTO;
+import com.example.toyshop.dto.order.OrderItemListDTO;
+import com.example.toyshop.dto.order.OrderListDTO;
 import com.example.toyshop.entity.Order;
 import com.example.toyshop.entity.OrderItem;
 import com.example.toyshop.entity.User;
 import com.example.toyshop.repository.OrderRepository;
-import com.example.toyshop.service.mapper.OrderItemMapper;
-import com.example.toyshop.service.mapper.OrderMapper;
+import com.example.toyshop.mapper.OrderItemMapper;
+import com.example.toyshop.mapper.OrderMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

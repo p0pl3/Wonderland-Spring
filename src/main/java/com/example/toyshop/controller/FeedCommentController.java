@@ -1,8 +1,9 @@
 package com.example.toyshop.controller;
 
-import com.example.toyshop.dto.*;
+import com.example.toyshop.dto.feed_comment.FeedCommentCreateDTO;
+import com.example.toyshop.dto.feed_comment.FeedCommentDetailDTO;
+import com.example.toyshop.dto.feed_comment.FeedCommentListDTO;
 import com.example.toyshop.service.FeedCommentService;
-import com.example.toyshop.service.ProductCommentService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

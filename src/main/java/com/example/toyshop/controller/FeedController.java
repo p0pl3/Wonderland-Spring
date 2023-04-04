@@ -1,6 +1,7 @@
 package com.example.toyshop.controller;
 
-import com.example.toyshop.dto.*;
+import com.example.toyshop.dto.feed.FeedCreateDTO;
+import com.example.toyshop.dto.feed.FeedListDTO;
 import com.example.toyshop.service.FeedService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

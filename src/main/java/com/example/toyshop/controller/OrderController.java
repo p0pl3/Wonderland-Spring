@@ -1,8 +1,8 @@
 package com.example.toyshop.controller;
 
-import com.example.toyshop.dto.OrderCreateDTO;
-import com.example.toyshop.dto.OrderItemListDTO;
-import com.example.toyshop.dto.OrderListDTO;
+import com.example.toyshop.dto.order.OrderCreateDTO;
+import com.example.toyshop.dto.order.OrderItemListDTO;
+import com.example.toyshop.dto.order.OrderListDTO;
 import com.example.toyshop.service.OrderItemService;
 import com.example.toyshop.service.OrderService;
 import lombok.AllArgsConstructor;

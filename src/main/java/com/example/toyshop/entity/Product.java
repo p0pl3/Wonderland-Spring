@@ -1,6 +1,5 @@
 package com.example.toyshop.entity;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,7 +25,7 @@ public class Product {
     private Float rating;
     private Float new_price;
     private Float discount;
-    private Float delivery_period;
+    private Long delivery_period;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

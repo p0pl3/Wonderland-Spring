@@ -1,6 +1,8 @@
 package com.example.toyshop.controller;
 
-import com.example.toyshop.dto.*;
+import com.example.toyshop.dto.user.UserCreateDTO;
+import com.example.toyshop.dto.user.UserDTO;
+import com.example.toyshop.dto.user.UserDetailDTO;
 import com.example.toyshop.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,19 +16,19 @@ import java.util.List;
 public class UserController {
     private final UserService service;
 
-    @PostMapping("/")
-    public ResponseEntity<UserDetailDTO> create(@RequestBody UserCreateDTO dto) {
-        return ResponseEntity.ok(service.create(dto));
-    }
-
     @GetMapping("/{id}")
-    public ResponseEntity<UserDetailDTO> geUserById(@PathVariable Long id) {
+    public ResponseEntity<UserDetailDTO> getUserById(@PathVariable Long id) {
         return ResponseEntity.ok(service.findByIdDto(id));
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<UserDTO>> getProductList() {
+    public ResponseEntity<List<UserDTO>> getAllUsers() {
         return ResponseEntity.ok(service.findAll());
+    }
+
+    @PostMapping("/{id}/update")
+    public ResponseEntity<UserDetailDTO> update(@PathVariable Long id, @RequestBody UserCreateDTO dto){
+        return ResponseEntity.ok(service.update(id, dto));
     }
 
     @DeleteMapping("/{id}")

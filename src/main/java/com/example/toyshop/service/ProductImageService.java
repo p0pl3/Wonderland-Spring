@@ -1,10 +1,10 @@
 package com.example.toyshop.service;
 
-import com.example.toyshop.dto.ProductImageDTO;
+import com.example.toyshop.dto.product.ProductImageDTO;
 import com.example.toyshop.entity.Product;
 import com.example.toyshop.entity.ProductImage;
 import com.example.toyshop.repository.ProductImageRepository;
-import com.example.toyshop.service.mapper.ProductImageMapper;
+import com.example.toyshop.mapper.ProductImageMapper;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
@@ -33,7 +33,7 @@ public class ProductImageService {
         Files.write(fileNameAndPath, file.getBytes());
         ProductImage image = new ProductImage();
         image.setProduct(product);
-        image.setUrl(fileName);
+        image.setUrl("images/" + fileName);
         return repository.save(image);
     }
 

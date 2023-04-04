@@ -1,7 +1,7 @@
 package com.example.toyshop.controller;
 
-import com.example.toyshop.dto.FeedCategoryCreateDTO;
-import com.example.toyshop.dto.FeedCategoryListDTO;
+import com.example.toyshop.dto.feed_category.FeedCategoryCreateDTO;
+import com.example.toyshop.dto.feed_category.FeedCategoryListDTO;
 import com.example.toyshop.service.FeedCategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

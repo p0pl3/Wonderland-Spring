@@ -1,15 +1,15 @@
 package com.example.toyshop.service;
 
-import com.example.toyshop.dto.ProductCreateDTO;
-import com.example.toyshop.dto.ProductDetailDTO;
-import com.example.toyshop.dto.ProductImageDTO;
-import com.example.toyshop.dto.ProductListDTO;
+import com.example.toyshop.dto.product.ProductCreateDTO;
+import com.example.toyshop.dto.product.ProductDetailDTO;
+import com.example.toyshop.dto.product.ProductImageDTO;
+import com.example.toyshop.dto.product.ProductListDTO;
 import com.example.toyshop.entity.Category;
 import com.example.toyshop.entity.Product;
 import com.example.toyshop.entity.ProductImage;
-import com.example.toyshop.repository.ProductRepository;
-import com.example.toyshop.service.mapper.ProductImageMapper;
-import com.example.toyshop.service.mapper.ProductMapper;
+import com.example.toyshop.repository.product.ProductRepository;
+import com.example.toyshop.mapper.ProductImageMapper;
+import com.example.toyshop.mapper.ProductMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -40,8 +40,8 @@ public class ProductService {
         return productMapper.toDetailDto(productRepository.save(product));
     }
 
-    public List<ProductListDTO> findAll(String title, Long category) {
-        return productRepository.findByFilters(title, category).stream().map(productMapper::toListDto).collect(Collectors.toList());
+    public List<ProductListDTO> findAll(String title, Long category, Long min_price, Long max_price) {
+        return productRepository.findByFilters(title, category, min_price, max_price).stream().map(productMapper::toListDto).collect(Collectors.toList());
     }
 
     public ProductDetailDTO findByIdDto(Long id) {

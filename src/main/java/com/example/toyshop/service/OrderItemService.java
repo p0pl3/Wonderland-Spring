@@ -1,11 +1,11 @@
 package com.example.toyshop.service;
 
-import com.example.toyshop.dto.OrderItemCreateDTO;
-import com.example.toyshop.dto.OrderItemListDTO;
+import com.example.toyshop.dto.order.OrderItemCreateDTO;
+import com.example.toyshop.dto.order.OrderItemListDTO;
 import com.example.toyshop.entity.Order;
 import com.example.toyshop.entity.OrderItem;
 import com.example.toyshop.repository.OrderItemRepository;
-import com.example.toyshop.service.mapper.OrderItemMapper;
+import com.example.toyshop.mapper.OrderItemMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,14 +1,13 @@
 package com.example.toyshop.service;
 
-
-import com.example.toyshop.dto.ProductCommentCreateDTO;
-import com.example.toyshop.dto.ProductCommentDTO;
-import com.example.toyshop.dto.ProductCommentDetailDTO;
+import com.example.toyshop.dto.product_comment.ProductCommentCreateDTO;
+import com.example.toyshop.dto.product_comment.ProductCommentDTO;
+import com.example.toyshop.dto.product_comment.ProductCommentDetailDTO;
 import com.example.toyshop.entity.Product;
 import com.example.toyshop.entity.ProductComment;
 import com.example.toyshop.entity.User;
 import com.example.toyshop.repository.ProductCommentRepository;
-import com.example.toyshop.service.mapper.ProductCommentMapper;
+import com.example.toyshop.mapper.ProductCommentMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

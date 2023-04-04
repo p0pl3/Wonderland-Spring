@@ -1,7 +1,7 @@
 package com.example.toyshop.controller;
 
-import com.example.toyshop.dto.CategoryCreateDTO;
-import com.example.toyshop.dto.CategoryListDTO;
+import com.example.toyshop.dto.category.CategoryCreateDTO;
+import com.example.toyshop.dto.category.CategoryListDTO;
 import com.example.toyshop.service.CategoryService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

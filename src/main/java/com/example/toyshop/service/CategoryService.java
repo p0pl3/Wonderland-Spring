@@ -1,10 +1,10 @@
 package com.example.toyshop.service;
 
-import com.example.toyshop.dto.CategoryCreateDTO;
-import com.example.toyshop.dto.CategoryListDTO;
+import com.example.toyshop.dto.category.CategoryCreateDTO;
+import com.example.toyshop.dto.category.CategoryListDTO;
 import com.example.toyshop.entity.Category;
 import com.example.toyshop.repository.CategoryRepository;
-import com.example.toyshop.service.mapper.CategoryMapper;
+import com.example.toyshop.mapper.CategoryMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

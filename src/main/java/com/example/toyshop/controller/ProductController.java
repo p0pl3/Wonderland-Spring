@@ -1,8 +1,8 @@
 package com.example.toyshop.controller;
 
-import com.example.toyshop.dto.ProductCreateDTO;
-import com.example.toyshop.dto.ProductDetailDTO;
-import com.example.toyshop.dto.ProductListDTO;
+import com.example.toyshop.dto.product.ProductCreateDTO;
+import com.example.toyshop.dto.product.ProductDetailDTO;
+import com.example.toyshop.dto.product.ProductListDTO;
 import com.example.toyshop.service.ProductImageService;
 import com.example.toyshop.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -34,8 +34,10 @@ public class ProductController {
 
     @GetMapping("/list")
     public ResponseEntity<List<ProductListDTO>> getProductList(@RequestParam(name = "title", required = false) String title,
-                                                               @RequestParam(name = "category", required = false) Long category) {
-        return ResponseEntity.ok(service.findAll(title, category));
+                                                               @RequestParam(name = "category", required = false) Long category,
+                                                               @RequestParam(name = "min_price", required = false) Long min_price,
+                                                               @RequestParam(name = "max_price", required = false) Long max_price) {
+        return ResponseEntity.ok(service.findAll(title, category, min_price, max_price));
     }
 
     @PutMapping("/{id}")

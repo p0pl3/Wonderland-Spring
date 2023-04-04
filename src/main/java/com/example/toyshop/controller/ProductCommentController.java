@@ -1,9 +1,8 @@
 package com.example.toyshop.controller;
 
-import com.example.toyshop.dto.OrderListDTO;
-import com.example.toyshop.dto.ProductCommentCreateDTO;
-import com.example.toyshop.dto.ProductCommentDTO;
-import com.example.toyshop.dto.ProductCommentDetailDTO;
+import com.example.toyshop.dto.product_comment.ProductCommentCreateDTO;
+import com.example.toyshop.dto.product_comment.ProductCommentDTO;
+import com.example.toyshop.dto.product_comment.ProductCommentDetailDTO;
 import com.example.toyshop.service.ProductCommentService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

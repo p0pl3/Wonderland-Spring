@@ -1,6 +1,6 @@
 package com.example.toyshop.controller;
 
-import com.example.toyshop.dto.ProductImageDTO;
+import com.example.toyshop.dto.product.ProductImageDTO;
 import com.example.toyshop.service.ProductImageService;
 import com.example.toyshop.service.ProductService;
 import lombok.RequiredArgsConstructor;
