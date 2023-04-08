@@ -6,7 +6,7 @@ import com.example.toyshop.dto.product_comment.ProductCommentDetailDTO;
 import com.example.toyshop.entity.Product;
 import com.example.toyshop.entity.ProductComment;
 import com.example.toyshop.entity.User;
-import com.example.toyshop.repository.ProductCommentRepository;
+import com.example.toyshop.repository.product_comment.ProductCommentRepository;
 import com.example.toyshop.mapper.ProductCommentMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,8 +31,8 @@ public class ProductCommentService {
         return mapper.toDetailDto(repository.save(comment));
     }
 
-    public List<ProductCommentDTO> findAllByProductId(Long id){
-        return repository.findAllByProductId(id).stream().map(mapper::toDto).collect(Collectors.toList());
+    public List<ProductCommentDTO> findAll(Long productId, Float min_rating, Float max_rating) {
+        return repository.findByFilters(productId, min_rating, max_rating).stream().map(mapper::toDto).collect(Collectors.toList());
     }
 
     public void delete(Long id) {

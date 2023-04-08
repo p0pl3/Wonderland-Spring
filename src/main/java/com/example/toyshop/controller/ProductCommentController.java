@@ -22,8 +22,10 @@ public class ProductCommentController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<ProductCommentDTO>> getAllProductComments(@PathVariable Long pid) {
-        return ResponseEntity.ok(service.findAllByProductId(pid));
+    public ResponseEntity<List<ProductCommentDTO>> getAllProductComments(@PathVariable Long pid,
+                                                                         @RequestParam(name = "min_rating", required = false) Float min_rating,
+                                                                         @RequestParam(name = "max_rating", required = false) Float max_rating) {
+        return ResponseEntity.ok(service.findAll(pid, min_rating, max_rating));
     }
 
 

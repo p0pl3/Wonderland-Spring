@@ -25,7 +25,7 @@ public class Product {
     private Float rating;
     private Float new_price;
     private Float discount;
-    private Long delivery_period;
+    private Short delivery_period;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

@@ -35,9 +35,13 @@ public class ProductController {
     @GetMapping("/list")
     public ResponseEntity<List<ProductListDTO>> getProductList(@RequestParam(name = "title", required = false) String title,
                                                                @RequestParam(name = "category", required = false) Long category,
-                                                               @RequestParam(name = "min_price", required = false) Long min_price,
-                                                               @RequestParam(name = "max_price", required = false) Long max_price) {
-        return ResponseEntity.ok(service.findAll(title, category, min_price, max_price));
+                                                               @RequestParam(name = "min_price", required = false) Float min_price,
+                                                               @RequestParam(name = "max_price", required = false) Float max_price,
+                                                               @RequestParam(name = "delivery_period", required = false) Short delivery_period,
+                                                               @RequestParam(name = "discount", required = false) Float discount,
+                                                               @RequestParam(name = "min_rating", required = false) Float min_rating,
+                                                               @RequestParam(name = "max_rating", required = false) Float max_rating) {
+        return ResponseEntity.ok(service.findAll(title, category, min_price, max_price, delivery_period, discount, min_rating, max_rating));
     }
 
     @PutMapping("/{id}")

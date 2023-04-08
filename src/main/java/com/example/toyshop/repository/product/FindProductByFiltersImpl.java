@@ -19,7 +19,8 @@ public class FindProductByFiltersImpl implements FindProductByFilters {
     CategoryRepository repository;
 
     @Override
-    public List<Product> findByFilters(String title, Long categoryId, Long min_price, Long max_price) {
+    public List<Product> findByFilters(String title, Long categoryId, Float min_price, Float max_price, Short delivery_period,
+                                       Float discount, Float min_rating, Float max_rating) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Product> cq = cb.createQuery(Product.class);
         Root<Product> product = cq.from(Product.class);
@@ -35,6 +36,18 @@ public class FindProductByFiltersImpl implements FindProductByFilters {
         }
         if (max_price != null) {
             predicates.add(cb.lessThanOrEqualTo(product.get("new_price"), max_price));
+        }
+        if (max_price != null) {
+            predicates.add(cb.equal(product.get("delivery_period"), delivery_period));
+        }
+        if (max_price != null) {
+            predicates.add(cb.equal(product.get("discount"), discount));
+        }
+        if (min_rating != null) {
+            predicates.add(cb.greaterThanOrEqualTo(product.get("rating"), min_rating));
+        }
+        if (max_rating != null) {
+            predicates.add(cb.lessThanOrEqualTo(product.get("rating"), max_rating));
         }
         cq.where(predicates.toArray(new Predicate[0]));
         return em.createQuery(cq).getResultList();

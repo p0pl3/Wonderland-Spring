@@ -7,5 +7,6 @@ import java.util.List;
 
 @Repository
 public interface FindProductByFilters {
-    List<Product> findByFilters(String title, Long id, Long min_price, Long max_price);
+    List<Product> findByFilters(String title, Long categoryId, Float min_price, Float max_price, Short delivery_period,
+                                Float discount, Float min_rating, Float max_rating);
 }

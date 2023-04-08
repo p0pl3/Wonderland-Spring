@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface FindFeedByFilters {
-    List<Feed> findByFilters(String title, Long id);
+    List<Feed> findByFilters(String title, Long categoryId);
 }
