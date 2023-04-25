@@ -40,9 +40,10 @@ public class ProductService {
         return productMapper.toDetailDto(productRepository.save(product));
     }
 
-    public List<ProductListDTO> findAll(String title, Long categoryId, Float min_price, Float max_price, Short delivery_period,
-                                        Float discount, Float min_rating, Float max_rating) {
-        return productRepository.findByFilters(title, categoryId, min_price, max_price, delivery_period, discount, min_rating, max_rating)
+    public List<ProductListDTO> findAll(String title, Long categoryId, Float min_price, Float max_price,
+                                        Short delivery_period, Float discount, Float min_rating, Float max_rating) {
+        return productRepository.findByFilters(title, categoryId, min_price, max_price, delivery_period, discount,
+                        min_rating, max_rating)
                 .stream().map(productMapper::toListDto).collect(Collectors.toList());
     }
 
