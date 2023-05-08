@@ -28,15 +28,18 @@ public class ProductService {
     private ProductMapper productMapper;
     private ProductImageMapper productImageMapper;
 
-    public ProductDetailDTO create(ProductCreateDTO dto, MultipartFile file) throws IOException {
+    public ProductDetailDTO create(ProductCreateDTO dto, MultipartFile[] files) throws IOException {
         Product product = productMapper.fromCreateDto(dto);
         productRepository.save(product);
         if (dto.getCategoryId() != null) {
             Category category = categoryService.findById(dto.getCategoryId());
             product.setCategory(category);
         }
-        if (file != null)
-            product.addImage(productImageService.create(file, product));
+        if (files != null)
+            for (MultipartFile file : files)
+                product.addImage(productImageService.create(file, product));
+        if (product.getDiscount() != null && product.getDiscount() > 0)
+            product.setNew_price(product.getPrice() - product.getPrice() * product.getDiscount() / 100);
         return productMapper.toDetailDto(productRepository.save(product));
     }
 

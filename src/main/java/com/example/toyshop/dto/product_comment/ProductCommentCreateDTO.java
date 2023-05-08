@@ -6,5 +6,4 @@ import lombok.Data;
 public class ProductCommentCreateDTO {
     private String comment;
     private Float rating;
-    private Long authorId;
 }

@@ -1,6 +1,7 @@
 package com.example.toyshop.security;
 
 import com.example.toyshop.dto.user.UserCreateDTO;
+import com.example.toyshop.mapper.UserMapper;
 import com.example.toyshop.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,15 +16,15 @@ public class AuthenticationService {
     private final UserService userService;
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
+    private final UserMapper mapper;
 
 
-    public Token register(UserCreateDTO userRegistryDTO) {
+    public AuthResponse register(UserCreateDTO userRegistryDTO) {
         var user = userService.save(userRegistryDTO);
-        var jwtToken = jwtService.generateToken(user);
-        return new Token(jwtToken);
+        return new AuthResponse(new Token(jwtService.generateToken(user)), mapper.toDto(user));
     }
 
-    public Token authenticate(UserCreateDTO request) {
+    public AuthResponse authenticate(UserCreateDTO request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
@@ -32,6 +33,6 @@ public class AuthenticationService {
                 )
         );
         var user = userService.getByEmail(request.getEmail());
-        return new Token(jwtService.generateToken(user));
+        return new AuthResponse(new Token(jwtService.generateToken(user)), mapper.toDto(user));
     }
 }

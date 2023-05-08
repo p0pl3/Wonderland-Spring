@@ -3,6 +3,9 @@ package com.example.toyshop.controller;
 import com.example.toyshop.dto.user.UserCreateDTO;
 import com.example.toyshop.dto.user.UserDTO;
 import com.example.toyshop.dto.user.UserDetailDTO;
+import com.example.toyshop.entity.User;
+import com.example.toyshop.mapper.UserMapper;
+import com.example.toyshop.security.AuthenticatedUserService;
 import com.example.toyshop.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +18,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService service;
+    private final AuthenticatedUserService authenticatedUserService;
+    private final UserMapper userMapper;
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDetailDTO> getUserById(@PathVariable Long id) {
         return ResponseEntity.ok(service.findByIdDto(id));
+    }
+
+    @GetMapping
+    public UserDTO getPersonInformation() {
+        User user = authenticatedUserService.getAuthenticatedPerson();
+        return userMapper.toDto(user);
     }
 
     @GetMapping("/list")

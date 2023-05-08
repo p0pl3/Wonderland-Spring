@@ -20,10 +20,9 @@ public class FeedCommentService {
     private final FeedService feedService;
     private FeedCommentMapper mapper;
 
-    public FeedCommentDetailDTO create(FeedCommentCreateDTO dto, Long feedId) {
-        User author = userService.findById(dto.getAuthorId());
+    public FeedCommentDetailDTO create(FeedCommentCreateDTO dto, Long feedId, User user) {
         FeedComment comment = mapper.fromCreateDto(dto);
-        comment.setAuthor(author);
+        comment.setAuthor(user);
         Feed feed = feedService.findByIdEntity(feedId);
         comment.setFeed(feed);
         return mapper.toDetailDto(repository.save(comment));

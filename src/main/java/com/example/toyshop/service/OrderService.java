@@ -12,6 +12,7 @@ import com.example.toyshop.mapper.OrderMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -26,14 +27,15 @@ public class OrderService {
     private UserService userService;
     private OrderItemService orderItemService;
 
-    public OrderCreateDTO create(OrderCreateDTO dto) {
+    public OrderListDTO create(OrderCreateDTO dto, User user) {
+        LocalDate now = LocalDate.now();
         Order order = mapper.fromCreateDto(dto);
         repository.save(order);
-        User buyer = userService.findById(dto.getBuyerId());
-        order.setBuyer(buyer);
+        order.setBuyer(user);
+        order.setCreationDate(now);
         List<OrderItem> orderItems = dto.getOrderItems().stream().map(orderItem -> orderItemService.create(orderItem, order)).collect(Collectors.toList());
         order.setOrderItems(orderItems);
-        return mapper.toCreateDto(repository.save(order));
+        return mapper.toListDto(repository.save(order));
     }
 
     public List<OrderListDTO> findAll() {
@@ -44,8 +46,8 @@ public class OrderService {
         return repository.findAllByBuyerId(id).stream().map(mapper::toListDto).collect(Collectors.toList());
     }
 
-    public OrderCreateDTO findById(Long id) {
-        return mapper.toCreateDto(repository.findById(id).orElse(null));
+    public OrderListDTO findById(Long id) {
+        return mapper.toListDto(repository.findById(id).orElse(null));
     }
 
     public List<OrderItemListDTO> findAllByOrderId(Long id) {

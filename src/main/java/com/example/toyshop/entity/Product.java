@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,12 +20,15 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String title;
-    private Float price;
-    private Short amount;
     private String description;
-    private Float rating;
+
+    private Float price;
+    private Short discount;
     private Float new_price;
-    private Float discount;
+
+    private Integer amount;
+
+    private Float rating;
     private Short delivery_period;
 
     @ManyToOne
@@ -38,6 +42,9 @@ public class Product {
     private List<ProductComment> comments;
 
     public void addImage(ProductImage image){
+        if (images == null){
+            images = new ArrayList<>();
+        }
         images.add(image);
     }
 }

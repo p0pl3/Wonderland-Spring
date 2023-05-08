@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -21,8 +22,7 @@ public class Feed {
     private Long id;
     private String title;
     private String description;
-    private Date dateCreate;
-    private Date dateUpdate;
+    private LocalDate dateCreate;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

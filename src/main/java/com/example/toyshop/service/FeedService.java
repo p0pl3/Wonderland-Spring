@@ -10,6 +10,7 @@ import com.example.toyshop.mapper.FeedMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,12 +23,13 @@ public class FeedService {
     private FeedMapper mapper;
 
 
-    public FeedListDTO create(FeedCreateDTO dto) {
-        User author = userService.findById(dto.getAuthorId());
+    public FeedListDTO create(FeedCreateDTO dto, User user) {
+        LocalDate now = LocalDate.now();
         FeedCategory category = feedCategoryService.findById(dto.getCategoryId());
         Feed feed = mapper.fromCreateDto(dto);
-        feed.setAuthor(author);
+        feed.setAuthor(user);
         feed.setCategory(category);
+        feed.setDateCreate(now);
         return mapper.toListDto(repository.save(feed));
     }
 

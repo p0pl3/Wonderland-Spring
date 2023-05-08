@@ -9,9 +9,7 @@ import java.util.List;
 @Data
 public class OrderCreateDTO {
     private String address;
-    private Date creationDate;
     private String phone;
-    private Long buyerId;
     private List<OrderItemCreateDTO> orderItems;
     private OrderStatus status;
     private Float total;

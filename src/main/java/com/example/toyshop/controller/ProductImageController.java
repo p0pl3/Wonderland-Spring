@@ -12,19 +12,19 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/product/{pid}/images")
+@RequestMapping("/product/images")
 @RequiredArgsConstructor
 public class ProductImageController {
     private final ProductService service;
     private final ProductImageService imageService;
 
-    @PostMapping("/")
+    @PostMapping("/{pid}")
     public ResponseEntity<ProductImageDTO> addImage(@RequestPart("file") MultipartFile file,
                                                     @PathVariable Long pid) throws IOException {
         return ResponseEntity.ok(service.addImage(pid, file));
     }
 
-    @GetMapping("/list")
+    @GetMapping("/{pid}/list")
     public ResponseEntity<List<ProductImageDTO>> getImages(@PathVariable Long pid) {
         return ResponseEntity.ok(imageService.findAllByProductId(pid));
     }

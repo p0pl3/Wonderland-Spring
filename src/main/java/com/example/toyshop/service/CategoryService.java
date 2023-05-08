@@ -19,8 +19,8 @@ public class CategoryService {
     private CategoryMapper mapper;
 
 
-    public CategoryListDTO create(CategoryCreateDTO CategoryCreateDTO) {
-        return mapper.toListDto(repository.save(mapper.toEntity(CategoryCreateDTO)));
+    public CategoryListDTO create(CategoryCreateDTO category) {
+        return mapper.toListDto(repository.save(mapper.toEntity(category)));
     }
 
     public List<CategoryListDTO> findAll() {

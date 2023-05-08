@@ -29,6 +29,11 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private List<Product> products;
 
+    public Category(String category_title) {
+        System.out.println(category_title);
+        this.title = category_title;
+    }
+
     public String slugify() {
         String a = Normalizer
                 .normalize(this.title, Normalizer.Form.NFD)

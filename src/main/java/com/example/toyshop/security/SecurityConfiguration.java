@@ -26,10 +26,13 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http,
                                                    AuthenticationProvider authenticationProvider,
                                                    JwtAuthFilter jwtAuthFilter) throws Exception {
-        http.csrf().disable()
+        http
+                .csrf().disable()
+                .cors()
+                .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/register", "/authenticate").permitAll()
-                .requestMatchers(HttpMethod.GET, "/product/**", "/feed/**").permitAll()
+                .requestMatchers("/register", "/authenticate", "/images/**", "/image/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/product/**", "/feed/**", "/category/**", "/feed_category/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/product/*/comments/**", "/feed/*/comments/**", "/user/*/update").authenticated()
                 .requestMatchers("/orders/**").authenticated()
                 .anyRequest().hasAuthority("ADMIN")

@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
 @Data
 @Builder
@@ -18,6 +20,7 @@ public class ProductComment {
     private Long id;
     private String comment;
     private Float rating;
+    private LocalDate dateCreation;
 
     @ManyToOne
     @JoinColumn(name = "product_id")

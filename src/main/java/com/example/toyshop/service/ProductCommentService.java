@@ -11,6 +11,7 @@ import com.example.toyshop.mapper.ProductCommentMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,16 +19,16 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class ProductCommentService {
     private final ProductCommentRepository repository;
-    private final UserService userService;
     private final ProductService productService;
     private ProductCommentMapper mapper;
 
-    public ProductCommentDetailDTO create(ProductCommentCreateDTO dto, Long productId) {
-        User author = userService.findById(dto.getAuthorId());
+    public ProductCommentDetailDTO create(ProductCommentCreateDTO dto, Long productId, User user) {
+        LocalDate now = LocalDate.now();
         ProductComment comment = mapper.fromCreateDto(dto);
-        comment.setAuthor(author);
         Product product = productService.findById(productId);
         comment.setProduct(product);
+        comment.setAuthor(user);
+        comment.setDateCreation(now);
         return mapper.toDetailDto(repository.save(comment));
     }
 

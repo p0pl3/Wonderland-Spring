@@ -14,6 +14,6 @@ public class ProductListDTO {
     private CategoryProductDTO category;
     private List<ProductImageDTO> images;
     private Float new_price;
-    private Float discount;
-    private Long delivery_period;
+    private Short discount;
+    private Short delivery_period;
 }

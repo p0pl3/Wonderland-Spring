@@ -10,13 +10,10 @@ import java.util.List;
 public class ProductCreateDTO {
     private String title;
     private Float price;
-    private Short amount;
+    private Integer amount;
     private String description;
     private Float rating;
     private Long categoryId;
-    private List<ProductImageDTO> images;
-    private List<ProductCommentDTO> comments;
-    private Float new_price;
-    private Float discount;
-    private Long delivery_period;
+    private Short discount;
+    private Short delivery_period;
 }

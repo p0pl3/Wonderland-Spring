@@ -3,6 +3,8 @@ package com.example.toyshop.controller;
 import com.example.toyshop.dto.order.OrderCreateDTO;
 import com.example.toyshop.dto.order.OrderItemListDTO;
 import com.example.toyshop.dto.order.OrderListDTO;
+import com.example.toyshop.entity.User;
+import com.example.toyshop.security.AuthenticatedUserService;
 import com.example.toyshop.service.OrderItemService;
 import com.example.toyshop.service.OrderService;
 import lombok.AllArgsConstructor;
@@ -17,10 +19,12 @@ import java.util.List;
 public class OrderController {
     private final OrderService service;
     private final OrderItemService orderItemService;
+    private final AuthenticatedUserService authenticatedUserService;
 
     @PostMapping("/")
-    public ResponseEntity<OrderCreateDTO> create(@RequestBody OrderCreateDTO order) {
-        return ResponseEntity.ok(service.create(order));
+    public ResponseEntity<OrderListDTO> create(@RequestBody OrderCreateDTO order) {
+        User user = authenticatedUserService.getAuthenticatedPerson();
+        return ResponseEntity.ok(service.create(order, user));
     }
 
     @GetMapping("/list")
@@ -29,13 +33,19 @@ public class OrderController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrderCreateDTO> getOrder(@PathVariable Long id) {
+    public ResponseEntity<OrderListDTO> getOrder(@PathVariable Long id) {
         return ResponseEntity.ok(service.findById(id));
     }
 
     @GetMapping("/user/{id}")
-    public ResponseEntity<List<OrderListDTO>> getAllUserOrders(@PathVariable Long id) {
+    public ResponseEntity<List<OrderListDTO>> getAllUserOrdersById(@PathVariable Long id) {
         return ResponseEntity.ok(service.findAllByUserId(id));
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<List<OrderListDTO>> getAllUserOrders() {
+        User user = authenticatedUserService.getAuthenticatedPerson();
+        return ResponseEntity.ok(service.findAllByUserId(user.getId()));
     }
 
     @GetMapping("/{oid}/items/list")

@@ -33,7 +33,7 @@ public class ProductImageService {
         Files.write(fileNameAndPath, file.getBytes());
         ProductImage image = new ProductImage();
         image.setProduct(product);
-        image.setUrl("images/" + fileName);
+        image.setUrl(fileName);
         return repository.save(image);
     }
 

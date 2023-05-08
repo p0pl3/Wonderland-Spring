@@ -2,6 +2,8 @@ package com.example.toyshop.controller;
 
 import com.example.toyshop.dto.feed.FeedCreateDTO;
 import com.example.toyshop.dto.feed.FeedListDTO;
+import com.example.toyshop.entity.User;
+import com.example.toyshop.security.AuthenticatedUserService;
 import com.example.toyshop.service.FeedService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +16,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class FeedController {
     private final FeedService service;
+    private final AuthenticatedUserService authenticatedUserService;
 
     @PostMapping("/")
     public ResponseEntity<FeedListDTO> create(@RequestBody FeedCreateDTO dto) {
-        return ResponseEntity.ok(service.create(dto));
+        User user = authenticatedUserService.getAuthenticatedPerson();
+        return ResponseEntity.ok(service.create(dto, user));
     }
 
     @GetMapping("/list")

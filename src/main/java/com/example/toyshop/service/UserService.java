@@ -35,11 +35,7 @@ public class UserService {
         var user = mapper.fromCreateDto(userDTO);
         user.setPassword(encoder.encode(user.getPassword()));
         user.setStatus(Status.ACTIVE);
-        if (userDTO.getRole() == null){
-            user.setRole(Role.USER);
-        }else{
-            user.setRole(Role.valueOf(userDTO.getRole()));
-        }
+        user.setRole(Role.USER);
         return save(user);
     }
 

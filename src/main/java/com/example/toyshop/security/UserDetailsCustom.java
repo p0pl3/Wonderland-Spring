@@ -18,8 +18,8 @@ import java.util.List;
 @Builder
 public class UserDetailsCustom implements UserDetails {
 
+    private Long id;
     private String email;
-
     private String password;
 
     private List<SimpleGrantedAuthority> authorities;
@@ -28,6 +28,7 @@ public class UserDetailsCustom implements UserDetails {
 
     public static UserDetails fromUser(User user) {
         return UserDetailsCustom.builder()
+                .id(user.getId())
                 .password(user.getPassword())
                 .email(user.getEmail())
                 .authorities(List.of(new SimpleGrantedAuthority(user.getRole().name())))

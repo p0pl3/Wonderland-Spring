@@ -13,12 +13,12 @@ public class AuthenticationController {
     private final AuthenticationService service;
 
     @PostMapping("/register")
-    public ResponseEntity<Token> register(@RequestBody UserCreateDTO request) {
+    public ResponseEntity<AuthResponse> register(@RequestBody UserCreateDTO request) {
         return ResponseEntity.ok(service.register(request));
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<Token> authenticate(@RequestBody UserCreateDTO request) {
+    public ResponseEntity<AuthResponse> authenticate(@RequestBody UserCreateDTO request) {
         return ResponseEntity.ok(service.authenticate(request));
     }
 
