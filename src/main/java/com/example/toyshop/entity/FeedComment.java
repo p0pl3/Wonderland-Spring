@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
 @Data
 @Builder
@@ -16,6 +18,7 @@ public class FeedComment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String comment;
+    private LocalDate dateCreation;
 
     @ManyToOne
     @JoinColumn(name = "author_id")

@@ -40,6 +40,8 @@ public class ProductService {
                 product.addImage(productImageService.create(file, product));
         if (product.getDiscount() != null && product.getDiscount() > 0)
             product.setNew_price(product.getPrice() - product.getPrice() * product.getDiscount() / 100);
+        else
+            product.setNew_price(product.getPrice());
         return productMapper.toDetailDto(productRepository.save(product));
     }
 

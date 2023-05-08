@@ -9,6 +9,7 @@ import com.example.toyshop.mapper.FeedCommentMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,10 +22,12 @@ public class FeedCommentService {
     private FeedCommentMapper mapper;
 
     public FeedCommentDetailDTO create(FeedCommentCreateDTO dto, Long feedId, User user) {
+        LocalDate now = LocalDate.now();
         FeedComment comment = mapper.fromCreateDto(dto);
         comment.setAuthor(user);
         Feed feed = feedService.findByIdEntity(feedId);
         comment.setFeed(feed);
+        comment.setDateCreation(now);
         return mapper.toDetailDto(repository.save(comment));
     }
 

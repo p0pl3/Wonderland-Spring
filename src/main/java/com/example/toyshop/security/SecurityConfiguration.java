@@ -33,7 +33,7 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests()
                 .requestMatchers("/register", "/authenticate", "/images/**", "/image/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/product/**", "/feed/**", "/category/**", "/feed_category/**").permitAll()
-                .requestMatchers(HttpMethod.POST, "/product/*/comments/**", "/feed/*/comments/**", "/user/*/update").authenticated()
+                .requestMatchers(HttpMethod.POST, "/product/comments/**", "/feed/comments/**", "/user/*/update").authenticated()
                 .requestMatchers("/orders/**").authenticated()
                 .anyRequest().hasAuthority("ADMIN")
                 .and()
